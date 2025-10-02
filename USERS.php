@@ -11,9 +11,7 @@ include('INCLUDES/db.php');
    Fetch All Students
    ======================= */
 $userSql = "
-    SELECT u.id, u.name, u.email, u.contact,
-           COUNT(b.BookingID) AS total_bookings,
-           SUM(CASE WHEN b.attendance_status = 'Present' THEN 1 ELSE 0 END) AS present_count
+    SELECT u.id, u.name, u.email, u.contact
     FROM users u
     LEFT JOIN slotbookings b ON u.id = b.UserID
     GROUP BY u.id
@@ -94,7 +92,6 @@ h2 { font-weight: 600; margin: 20px 0; color: #333; }
                 <th>Name</th>
                 <th>Email</th>
                 <th>Contact</th>
-                <th>Total Bookings</th>
             </tr>
         </thead>
         <tbody>
@@ -105,7 +102,6 @@ h2 { font-weight: 600; margin: 20px 0; color: #333; }
                     <td data-label="Name"><?= htmlspecialchars($row['name']) ?></td>
                     <td data-label="Email"><?= htmlspecialchars($row['email']) ?></td>
                     <td data-label="Contact"><?= htmlspecialchars($row['contact']) ?></td>
-                    <td data-label="Total Bookings"><?= htmlspecialchars($row['total_bookings']) ?></td>
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>
@@ -148,4 +144,5 @@ h2 { font-weight: 600; margin: 20px 0; color: #333; }
 </html>
 
 <?php $conn->close(); ?>
+
 
