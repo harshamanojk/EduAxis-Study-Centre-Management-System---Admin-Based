@@ -21,6 +21,11 @@ $userSql = "
 ";
 $result = $conn->query($userSql);
 
+$allUser = [];   // FIX: store users
+while ($row = $result->fetch_assoc()) {
+    $allUser[] = $row;
+}
+
 /* =======================
    Fetch All Admins
    ======================= */
@@ -143,3 +148,4 @@ h2 { font-weight: 600; margin: 20px 0; color: #333; }
 </html>
 
 <?php $conn->close(); ?>
+
