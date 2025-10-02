@@ -22,7 +22,7 @@ $paymentSql = "
         p.created_at
     FROM payments p
     JOIN users u ON p.UserID = u.id
-    ORDER BY p.created_at DESC
+    ORDER BY p.created_at
 ";
 
 $allPayments = [];
@@ -149,3 +149,4 @@ while ($row = $result->fetch_assoc()) {
 </html>
 
 <?php $conn->close(); ?>
+
